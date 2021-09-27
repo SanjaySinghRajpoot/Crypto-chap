@@ -1,9 +1,11 @@
 import React from 'react'
 
-export const Homepage = () => {
+const Cryptocurrencies = () => {
     return (
         <div>
-            Crypto currinces
+            fdfdf
         </div>
     )
 }
+
+export default Cryptocurrencies;
