@@ -2,7 +2,7 @@ import React from 'react';
 import millify from 'millify';
 import { Collapse, Row, Col, Typography, Avatar } from 'antd';
 import HTMLReactParser from 'html-react-parser';
-
+import Loader from '../components/Loader';
 import { useGetCryptoExchangesQuery } from "../services/cryptoApi";
 
 const { Text } = Typography;
@@ -15,28 +15,19 @@ const Exchanges = () => {
 
     // console.log(globalStats[1] + '  this is in exchnages');
 
-    if(isFetching) return '..loading';
+    if(isFetching) return <Loader />;
     
     return (
         <> 
         <Row>
-           <Col span={6}>Rank</Col> 
-           <Col span={6}>Name</Col> 
-           <Col span={6}>Volume</Col> 
-           <Col span={6}>Types</Col> 
+           <Col span={6}>Exchanges</Col> 
+           <Col span={6}>24h Trade Volume</Col> 
+           <Col span={6}>Market</Col> 
+           <Col span={6}>Change</Col> 
         </Row>
         <Row>
             {
                 globalStatsList.map((exchange)=> (
-                   
-                //     <Col span={24}>
-                //    <Row gutter={[16,16]}> 
-                //    <Typography> Rank is {exchange.rank + "  " + exchange.name} </Typography>
-                //     <Typography> Price is {exchange.rank + "  " + exchange.name} </Typography>
-                //     <Typography> Price is {exchange.rank + "  " + exchange.name} </Typography>
-                //     </Row>
-                //     </Col>
-
                 <Col span={24}>
             <Collapse>
               <Panel
@@ -55,7 +46,9 @@ const Exchanges = () => {
                   </Row>
                   )}
               >
-                {HTMLReactParser(exchange.description || '')}
+                { 
+                  exchange.description == 0 ? (<p> No info found </p>) : HTMLReactParser(exchange.description || '')                 
+                }
               </Panel>
             </Collapse>
           </Col>

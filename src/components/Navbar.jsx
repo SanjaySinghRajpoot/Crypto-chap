@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Button, Menu, Typography, Avatar } from "antd";
 import { Link } from "react-router-dom";
+import icon from "./crypto-chap.jpg";
 
 import {
   HomeOutlined,
@@ -38,7 +39,7 @@ const Navbar = () => {
   return (
     <div className="nav-container">
       <div className="logo-container">
-        <Avatar size="large" />
+        <Avatar src={icon} size="large" />
         <Typography.Title level={2} className="logo">
           <Link to="/">Crypto Chap</Link>
         </Typography.Title>
