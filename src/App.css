@@ -37,7 +37,7 @@ a:hover{
     margin-left: 16.7rem;
 }
 
-@media only screen and (max-device-width: 580px) {
+@media only screen and (max-device-width: 765px) {
     
     .routes{
         padding: 20px;
@@ -55,7 +55,7 @@ a:hover{
     background-color: rgb(0, 21, 41);
 }
 
-@media only screen and (max-device-width: 580px) {
+@media only screen and (max-device-width: 765px) {
     
    .nav-container{
     position: fixed;
