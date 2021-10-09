@@ -30,12 +30,22 @@ a:hover{
 .main{
     flex: 0.8;
     width: 100%;
-    padding-left: 16.7rem;
     
 }
 .routes{
     padding: 20px;
+    margin-left: 16.7rem;
 }
+
+@media only screen and (max-device-width: 580px) {
+    
+    .routes{
+        padding: 20px;
+        margin-left: 0rem;
+    }
+    
+}
+
 .nav-container{
     position: fixed;
     left: 0;
@@ -45,12 +55,44 @@ a:hover{
     background-color: rgb(0, 21, 41);
 }
 
+@media only screen and (max-device-width: 580px) {
+    
+   .nav-container{
+    position: fixed;
+    left: 0;
+    margin-top: -90px;
+    height: 0px;
+    margin: 0px;
+    }
+
+    .menu-control-container{
+        display: none !important;
+        position: absolute !important;
+        right: 10px !important;
+        margin-top: -85px !important;
+        font-size: 1.2rem !important;
+        background-color: var(--pink) !important;
+        border: none !important;
+    }
+
+    .logo-container{
+        background-color: #001529;
+        display: flex;
+        padding: 20px;
+        align-items: center;
+        width: 100%;
+        margin-top: -90px;
+    }
+    
+}
+
 .logo-container{
     background-color: #001529;
     display: flex;
     padding: 20px;
     align-items: center;
     width: 100%;
+    /* margin-top: -0px; */
 }
 .logo{
     margin:0 0 0 15px;
@@ -111,7 +153,7 @@ a:hover{
     }
 
     .nav-container{
-        height: 8vh;
+        height: 0vh;
         position:fixed;
         width: 100%;
         z-index: 100;
