@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from "react";
 import millify from "millify";
 import { Link } from "react-router-dom";
-import HTMLReactParser from 'html-react-parser';
-import { Card, Row, Col, Input, Collapse, Typography, Avatar} from "antd";
+import HTMLReactParser from "html-react-parser";
+import { Card, Row, Col, Input, Collapse, Typography, Avatar } from "antd";
 import { useGetCryptosQuery } from "../services/cryptoApi";
 import Loader from "./Loader";
-
 
 const { Text } = Typography;
 const { Panel } = Collapse;
@@ -45,44 +44,61 @@ const Cryptocurrencies = ({ simplified }) => {
           />
         </div>
       )}
-      
-      <Row>
-           <Col span={6}>Name</Col> 
-           <Col span={6}>Price</Col> 
-           <Col span={6}>Change</Col> 
-           <Col span={6}>Market Cap</Col> 
+      {simplified ? (
+        <Row>
+         <Col ></Col>
+          <Col span={6}>Name</Col>
+          <Col span={4}>Price</Col>
+          <Col span={4}>Change</Col>
+          <Col span={3}>Market Cap</Col>
+          <Col span={3}>Circulating Supply</Col>
         </Row>
+      ) : (
+        <div></div>
+      )}
       <Row>
-      {
-          cryptos?.map((exchange)=> (
-          <Col span={24}>
-      <Collapse>
-        <Panel
-          key={exchange.id}
-          showArrow={false}
-          header={(
-            <Row key={exchange.id}>
-              <Col span={6}>
-                <Text><strong>{exchange.rank}.</strong></Text>
-                <Avatar className="exchange-image" src={exchange.iconUrl} />
-                <Text><strong>{exchange.name}</strong></Text>
-              </Col>
-              <Col span={6}>${exchange.price}</Col>
-              <Col span={6}>{millify(exchange.change)}%</Col>
-              <Col span={6}>{millify(exchange.marketCap)}</Col>
-            </Row>
-            )}
-        >
-          
-        </Panel>
-      </Collapse>
-    </Col>
-          ))
-      } 
-  </Row>
-       <br></br>
+        {simplified
+          ? cryptos?.map((exchange) => (
+              <Col span={24}>
+                <Collapse>
+                  <Panel
+                    key={exchange.id}
+                    showArrow={false}
+                    header={
+                      <Row key={exchange.id}>
+                        <Col span={6}>
+                          <Text>
+                            <strong>{exchange.rank}.</strong>
+                          </Text>
+                          <Avatar
+                            className="exchange-image"
+                            src={exchange.iconUrl}
+                          />
+                          <Text>
+                            <strong>{exchange.name}</strong>
+                          </Text>
+                        </Col>
+                        <Col span={4}>${millify(exchange.price)}</Col>
+                        <Col span={4}>{exchange.change > 0 ? <Text type="success" medium> {millify(exchange.change)}</Text> : <Text type="danger" medium> {millify(exchange.change)}</Text>} %</Col>
+                        <Col span={4}>{millify(exchange.marketCap)}</Col>
+                        <Col span={4}>{millify(exchange.circulatingSupply)}</Col>
+                      </Row>
+                    }
+                  >
+                  { 
+                    exchange.description == 0 ? (<p> No info found </p>) : HTMLReactParser(exchange.description || '')                 
+                  }
 
-       <Title level={2} className="home-title">Top 10 Cryptocurrencies</Title>
+                  </Panel>
+                </Collapse>
+              </Col>
+            ))
+          : ""}
+      </Row>
+      <br></br>
+      <Title level={2} className="home-title">
+        Top 10 Cryptocurrencies
+      </Title>
       <Row gutter={[32, 32]} className="crypto-card-containers">
         {cryptos?.map((currency) => (
           <Col xs={24} sm={12} lg={6} className="crypto-card" key={currency.id}>
