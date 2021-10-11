@@ -6,7 +6,6 @@ import { useGetCryptoNewsQuery } from "../services/cryptoNewsApi";
 import { useGetCryptosQuery } from "../services/cryptoApi";
 import Loader from "./Loader";
 
-
 const { Text, Title } = Typography;
 const { Option } = Select;
 
@@ -15,8 +14,11 @@ const demoImage =
 
 const News = ({ simplified }) => {
   const [newsCategory, setNewsCategory] = useState("Cryptocurrency");
-  const { data: cryptoNews } = useGetCryptoNewsQuery({ newsCategory, count: simplified ? 6 : 12 });
   const { data } = useGetCryptosQuery(100);
+  const { data: cryptoNews } = useGetCryptoNewsQuery({
+    newsCategory,
+    count: simplified ? 6 : 12,
+  });
 
   if (!cryptoNews?.value) return <Loader />;
 
@@ -27,19 +29,17 @@ const News = ({ simplified }) => {
           <Select
             showSearch
             className="select-news"
-            placeholder="Select a crypto"
+            placeholder="Select a Crypto"
             optionFilterProp="children"
             onChange={(value) => setNewsCategory(value)}
             filterOption={(input, option) =>
               option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
             }
           >
-            <Option value="Cryptocurrency">Cryptocurrency</Option>
-            {
-              data?.data?.coins.map((coin) => {
-                  <Option value={coin.name}>{coin.name}</Option>
-              })
-            }
+            <Option value="Cryptocurency">Cryptocurrency</Option>
+            {data?.data?.coins?.map((currency) => (
+              <Option value={currency.name}>{currency.name}</Option>
+            ))}
           </Select>
         </Col>
       )}
