@@ -16,6 +16,10 @@ webite - [Crypto Chap](https://crypto-chap.netlify.app/)
 
 ## Installation 
 
+### `npm install`
+
+Runs this command inside the project directory.
+
 ### `npm start`
 
 Runs the app in the development mode.
@@ -28,4 +32,4 @@ Crypto chap is a website to display Cryptocurriences data at one place. You can 
 ## Want to contribute ?
 Feel free to raise a valid issue. Later you may send the PR.
 
-###Thank You 
+### Thank You 
